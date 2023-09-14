@@ -12,5 +12,4 @@ type Movie struct {
 	Genres   []Genre `gorm:"many2many:movie_genres;"`
 	Director []Person
 	Cast     []Person
-	Writer   []Person
 }

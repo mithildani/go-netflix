@@ -7,14 +7,14 @@ type Media struct {
 	MovieID       uint
 	Audios        []Audio
 	Videos        []Video
-	TrailerVideos []Video
 	TrailerAudios []Audio
+	TrailerVideos []Video
 	Thumbnail     string
 }
 
 type Audio struct {
 	gorm.Model
-	Language Language
+	Language string `gorm:"unique"`
 	URL      string
 }
 
