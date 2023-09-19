@@ -2,24 +2,31 @@ package models
 
 import "gorm.io/gorm"
 
-type Media struct {
-	gorm.Model
-	MovieID       uint
-	Audios        []Audio
-	Videos        []Video
-	TrailerAudios []Audio
-	TrailerVideos []Video
-	Thumbnail     string
-}
+type ContentType string
+
+const (
+	Default ContentType = "default"
+	Trailer ContentType = "trailer"
+)
 
 type Audio struct {
 	gorm.Model
-	Language string `gorm:"unique"`
+	Movie    Movie
+	Type     ContentType
+	Language Language
 	URL      string
+}
+
+type Language struct {
+	gorm.Model
+	ShortName   string
+	DisplayName string
 }
 
 type Video struct {
 	gorm.Model
+	Movie   Movie
+	Type    ContentType
 	Quality Quality
 	URL     string
 }
